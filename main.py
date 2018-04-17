@@ -6,7 +6,7 @@ script_dir = os.path.dirname(r'C:\Users\sammy\Desktop\DOWNLOADS\PROGRAMMING\Como
 rel_path = "_Data-Analysis/netflow_day-02.csv"
 abs_file_path = os.path.join(script_dir, rel_path)
 
-f = open(abs_file_path,'r') # open the csv data file
+f = open(abs_file_path, 'r') # open the csv data file
 next(f, None) # skip the header row
 reader = csv.reader(f)
 
