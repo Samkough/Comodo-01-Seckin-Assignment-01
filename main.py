@@ -10,12 +10,17 @@ f = open(abs_file_path, 'r') # open the csv data file
 next(f, None) # skip the header row
 reader = csv.reader(f)
 
-sql = sqlite3.connect('database.db')
+sql = sqlite3.connect('database-500.db')
 cur = sql.cursor()
 
 cur.execute('''CREATE TABLE IF NOT EXISTS seckin(Time INTEGER, Duration INTEGER, SrcDevice TEXT, DstDevice TEXT, Protocol INTEGER, SrcPort INTEGER, DstPort INTEGER, SrcPackets INTEGER, DstPackets INTEGER, SrcBytes INTEGER, DstBytes INTEGER)''') # create the table if it doesn't already exist
 
+i = 0
+
 for row in reader:
+	i += 1
+	if i > 500:
+		break
 	cur.execute("INSERT INTO seckin VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", row)
 
 f.close()
